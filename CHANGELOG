@@ -1,0 +1,19 @@
+----------------------------------- CHANGELOG ----------------------------------------
+-Had trouble implementing a GCF function for generating numbers for the RSA Algorithm
+  -Fixed this by implementing the Euclidean Algorithm for finding the GCF
+-Ran into an issue with the algorithm failing on the encryption/decryption phase.
+ Traced steps and everything else was correct.
+  -Discovered that my integers were overflowing due to the massive power calculations.
+    Tried to fix this by using an unsigned int, then an unsigned long, and finally an
+    unsigned long long. None of these worked, so I switched to using the GNU MP library
+    which enabled me to have massive numbers without an issue. This fixed it.
+-Ran into an issue where the data was not decrypting properly. Discovered this happened
+  when p and q were not prime.
+    -Created a function to check if the randomly chosen p and q were both prime. This
+      fixed the issue.
+-Ran into an issue using std::pair<T, T>, where I was grabbing the wrong pair item
+  for the keypair.
+    -Fixed this by using std::get<0>(keypair).
+-Ran into a bug where the decrypted string was only numbers.
+  -Discovered that this was a series of ascii codes since they were not being cast
+    to chars. Fixed the issue with a (char) type cast.

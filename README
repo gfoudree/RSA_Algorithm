@@ -1,0 +1,29 @@
+ComSci 327 Final Project - by Grant Foudree
+
+The program implements the RSA Algorithm, providing the user with the ability to
+ encrypt and decrypt strings using the RSA Algorithm. The program generates a
+ random key-pair at runtime, and encrypts/decrypts the data on the fly with it.
+
+Disclaimer:
+  This program is not guaranteed to provide strong cryptography. I am not an experienced Cryptographer.
+
+Sources:
+  I referenced the RSA Algorithm specifics from the following sites:
+  - https://www.cs.utexas.edu/~mitra/honors/soln.html
+  - https://en.wikipedia.org/wiki/RSA_(cryptosystem)
+
+Classes:
+  -RSA_Engine
+    //The cryptography engine for implementing the RSA Algorithm.
+
+    std::pair<std::pair<mpz_class, mpz_class>, std::pair<mpz_class, mpz_class>> generateKeyPair();
+      //Generates a RSA key-pair
+    mpz_class encryptByte(std::pair<mpz_class, mpz_class> publicKey, std::pair<mpz_class, mpz_class> privateKey, const unsigned int n);
+      //Encrypts one byte of data using the RSA Algorithm
+    mpz_class decryptByte(std::pair<mpz_class, mpz_class> publicKey, std::pair<mpz_class, mpz_class> privateKey, mpz_class enc);
+      //Decrypts one byte of data using the RSA Algorithm
+
+    std::vector<mpz_class> encryptString(std::pair<mpz_class, mpz_class> publicKey, std::pair<mpz_class, mpz_class> privateKey, std::string data);
+      //Encrypts a string of data using the RSA Algorithm, returning a vector of mpz_class (Very large integers)
+    std::string decryptString(std::pair<mpz_class, mpz_class> publicKey, std::pair<mpz_class, mpz_class> privateKey, std::vector<mpz_class> encryptedString);
+      //Decrypts a vector of mpz_class encrypted bytes
